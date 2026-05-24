@@ -454,7 +454,7 @@ export default function ExerciseLibrary() {
           onClick={() => { setViewTab('Quizzes'); setSelectedItems([]); }}
           style={{ background: 'none', border: 'none', padding: '12px 0', fontSize: '15px', fontWeight: '800', cursor: 'pointer', color: viewTab === 'Quizzes' ? '#003366' : '#94a3b8', borderBottom: viewTab === 'Quizzes' ? '3px solid #003366' : '3px solid transparent', marginBottom: '-2px', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
         >
-          Quizzes
+            
         </button>
         <button 
           onClick={() => { setViewTab('Deleted'); setSelectedItems([]); setCurrentFolder(null); }}
@@ -582,6 +582,41 @@ export default function ExerciseLibrary() {
                 onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
               >
                 Xác nhận
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* --- POPUP TẠO THƯ MỤC MỚI (FOLDER CREATION MODAL) --- */}
+      {showFolderModal && (
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(15, 23, 42, 0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '15px', boxSizing: 'border-box' }}>
+          <div style={{ backgroundColor: 'white', padding: '30px', borderRadius: '24px', width: '100%', maxWidth: '400px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+            <h3 style={{ color: '#003366', marginTop: 0, marginBottom: '20px', fontWeight: '800', fontSize: '20px' }}>Tạo thư mục mới</h3>
+            <input 
+              type="text" 
+              autoFocus 
+              placeholder="Nhập tên thư mục..." 
+              value={inputValue} 
+              onChange={(e) => setInputValue(e.target.value)} 
+              onKeyDown={(e) => e.key === 'Enter' && handleCreateFolder()}
+              style={{ width: '100%', padding: '14px 16px', borderRadius: '12px', border: '1px solid #cbd5e1', outline: 'none', fontSize: '15px', boxSizing: 'border-box', marginBottom: '24px' }}
+            />
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button 
+                onClick={() => { setShowFolderModal(false); setInputValue(''); }} 
+                style={{ flex: 1, padding: '14px', borderRadius: '12px', border: '1px solid #cbd5e1', backgroundColor: 'white', color: '#64748b', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f8fafc'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'white'}
+              >
+                Hủy
+              </button>
+              <button 
+                onClick={handleCreateFolder} 
+                style={{ flex: 1, padding: '14px', borderRadius: '12px', border: 'none', backgroundColor: '#003366', color: 'white', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 6px -1px rgba(0,51,102,0.2)', transition: 'all 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                Tạo mới
               </button>
             </div>
           </div>
